@@ -272,12 +272,21 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  margin-bottom: 28px;
+  margin-bottom: 14px;
 }
 .hero-cta .btn-primary { background: #fff; color: var(--purple-700); }
 .hero-cta .btn-primary:hover { background: #FED7AA; color: var(--purple-900); }
 .hero-cta .btn-ghost { background: rgba(255, 255, 255, 0.12); color: #fff; border: 1px solid rgba(255, 255, 255, 0.25); }
 .hero-cta .btn-ghost:hover { background: rgba(255, 255, 255, 0.2); }
+.btn-store { flex: 1 1 200px; min-width: 180px; display: flex; align-items: center; justify-content: center; gap: 12px; background: #fff; border-radius: 999px; height: 64px; text-decoration: none; box-shadow: 0 6px 18px rgba(91,63,184,.35); transition: transform .15s ease, box-shadow .15s ease; }
+.btn-store:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(91,63,184,.42); }
+.btn-store .logo { flex: none; }
+.btn-store .store-t { display: flex; flex-direction: column; line-height: 1.15; }
+.btn-store .store-t small { font-size: 11px; letter-spacing: 1px; color: #6a5bb0; font-weight: 700; }
+.btn-store .store-t b { font-size: 19px; color: #33217a; font-weight: 800; }
+.hero-cta-video { margin-bottom: 28px; }
+.hero-cta-video .btn-ghost { display: block; width: 100%; background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.35); }
+.hero-cta-video .btn-ghost:hover { background: rgba(255,255,255,.2); }
 
 .hero-trust {
   display: flex;
@@ -1125,25 +1134,32 @@ a { color: inherit; text-decoration: none; }
     <div class="hero-text">
       <span class="hero-tag">🚀 LGS 2026 · Aç. Çöz. Yüksel.</span>
       <h1>Neto ile <span class="accent">netini yükselt.</span></h1>
-      <p class="hero-sub">6, 7 ve 8. sınıf için oyun gibi LGS hazırlığı. Neto'nun kısayollarıyla soruları hızlı çöz, günde 10 dakikada netini artır — günlük seri, lig ve ödüllerle çalışmak eğlenceye dönüşür.</p>
+      <p class="hero-sub">6, 7 ve 8. sınıf için oyun gibi LGS hazırlığı. Neto eşliğinde her gün soru çöz, günde 10 dakikada netini artır — günlük seri, lig ve ödüllerle çalışmak eğlenceye dönüşür.</p>
       <div class="hero-cta">
-        <a href="https://play.google.com/store/apps/details?id=com.netup.app" class="btn btn-primary btn-lg" rel="noopener">
-          <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814 13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .61-.92zM14.5 12.7l2.581 2.581-10.96 6.348L14.5 12.7zM6.121 1.371l10.96 6.348L14.5 11.3 6.121 1.371zm14.71 9.146 2.84 1.645c.687.398.687 1.292 0 1.69l-2.998 1.733L17.62 12l3.211-1.483z"/></svg>
-          Google Play'den ücretsiz indir
+        <a href="https://play.google.com/store/apps/details?id=com.netup.app" class="btn-store" rel="noopener">
+          <svg class="logo" width="30" height="30" viewBox="0 0 60 60" aria-hidden="true">
+            <polygon points="10,8 32,19 10,30" fill="#00A0FF"/>
+            <polygon points="32,19 54,30 10,30" fill="#EA4335"/>
+            <polygon points="10,30 32,41 10,52" fill="#00C853"/>
+            <polygon points="10,30 54,30 32,41" fill="#FFCE00"/>
+          </svg>
+          <span class="store-t"><small>İNDİR</small><b>Google Play</b></span>
         </a>
-        <a href="https://apps.apple.com/tr/app/id6768393770" class="btn btn-primary btn-lg" rel="noopener">
-          <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
-          App Store
+        <a href="https://apps.apple.com/tr/app/id6768393770" class="btn-store" rel="noopener">
+          <svg class="logo" width="26" height="30" viewBox="0 0 384 512" aria-hidden="true">
+            <path fill="#111" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C61.5 141.2 18 174.8 18 244.2c0 20.5 3.7 41.7 11.2 63.5 10 28.6 46 98.9 83.6 97.7 19.7-.5 33.6-14 59.2-14 24.8 0 37.7 14 59.2 14 37.9-.6 70.5-64.5 80-93.2-50.8-24-72.5-71-72.5-43.5zM255.5 88c26.9-32.9 24.5-62.9 23.7-73.7-23.9 1.4-51.6 16.4-67.4 34.9-17.4 20-27.6 44.7-25.4 71.1 25.8 2 49.4-11.3 69.1-32.3z"/>
+          </svg>
+          <span class="store-t"><small>İNDİR</small><b>App Store</b></span>
         </a>
       </div>
-      <div style="margin-top: 16px;">
+      <div class="hero-cta-video">
         <a href="#tanitim" class="btn btn-ghost">▶ Tanıtımı izle</a>
       </div>
       <div class="hero-trust">
         <span>iOS &amp; Android</span>
         <span>Temel sürüm ücretsiz</span>
         <span>MEB müfredatı uyumlu</span>
-        <span>8.500+ soru · 6 ders</span>
+        <span>~10.000 soru · 6 ders</span>
         <span>Lansman özel: ilk hafta Pro ücretsiz</span>
       </div>
     </div>
@@ -1232,12 +1248,12 @@ a { color: inherit; text-decoration: none; }
       <div class="feature-card">
         <div class="feature-icon green">📊</div>
         <h3>Veli raporu</h3>
-        <p>Anne ve baban gelişimini görsün. Haftalık özet: kaç soru çözüldü, hangi konuda zorlanıldı, seri durumu.</p>
+        <p>Anne ve baban gelişimini görsün. Tek dokunuşla özet paylaş: kaç soru çözüldü, hangi konuda zorlanıldı, seri durumu.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon sky">📚</div>
         <h3>MEB müfredat uyumlu</h3>
-        <p>Türkçe, Matematik, Fen, İnkılap, Din ve İngilizce — 8.500+ soru, tümü MEB müfredatına birebir uyumlu, Türkiye sınav sistemine özel kalibre.</p>
+        <p>Türkçe, Matematik, Fen, İnkılap, Din ve İngilizce — ~10.000 soru, tümü MEB müfredatına birebir uyumlu, Türkiye sınav sistemine özel kalibre.</p>
       </div>
     </div>
   </div>
@@ -1334,7 +1350,7 @@ a { color: inherit; text-decoration: none; }
       <div class="feature-card">
         <div class="feature-icon green">👀</div>
         <h3>Ne yaptığını görürsünüz</h3>
-        <p>Pazar günü e-postanıza gelen haftalık rapor: kaç soru çözüldü, hangi konuda zorlanıldı, ne kadar çalışıldı.</p>
+        <p>Tek dokunuşla veliye rapor: kaç soru çözüldü, hangi konuda zorlanıldı, ne kadar çalışıldı — WhatsApp, e-posta veya SMS ile.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon sky">⏱️</div>
@@ -1344,7 +1360,7 @@ a { color: inherit; text-decoration: none; }
       <div class="feature-card">
         <div class="feature-icon amber">💸</div>
         <h3>Dershane bütçesi yok</h3>
-        <p>Aylık ₺99,99 — ortalama bir dershane ücretinin yaklaşık 100'de biri. Sonuç dershane gibi, masraf değil.</p>
+        <p>Aylık ₺99,99 → yılda ~₺1.200. Ortalama dershane ₺70-80 bin — yani %2'sinden az.</p>
       </div>
     </div>
   </div>
@@ -1356,11 +1372,11 @@ a { color: inherit; text-decoration: none; }
     <div>
       <span class="section-eyebrow">Veliler için</span>
       <h2 class="section-title">Çocuğunuz çalıştıkça, siz takip edin.</h2>
-      <p class="section-sub" style="margin-bottom:0;">Net Up sadece çocukların değil, velilerin de aklının rahat ettiği bir araç. Haftalık özet rapor doğrudan size gelir.</p>
+      <p class="section-sub" style="margin-bottom:0;">Net Up sadece çocukların değil, velilerin de aklının rahat ettiği bir araç. Çocuğun ilerleme raporu tek dokunuşla sana ulaşır.</p>
       <ul class="parents-list">
         <li>
           <span class="check">✓</span>
-          <div><strong>Haftalık ilerleme raporu</strong><span>Çocuğunuzun kaç soru çözdüğü, hangi konularda iyi olduğu ve nerede zorlandığı tek bir özette.</span></div>
+          <div><strong>İlerleme raporu</strong><span>Çocuğunuzun kaç soru çözdüğü, hangi konularda iyi olduğu ve nerede zorlandığı tek bir özette — uygulamadan tek dokunuşla paylaşılır.</span></div>
         </li>
         <li>
           <span class="check">✓</span>
@@ -1368,7 +1384,7 @@ a { color: inherit; text-decoration: none; }
         </li>
         <li>
           <span class="check">✓</span>
-          <div><strong>Dershanenin çok altında bir bütçe</strong><span>Aylık ₺99,99 — yıllık toplam, ortalama bir dershane ücretinin yaklaşık 100'de biri. Sonuç dershane gibi, masraf değil.</span></div>
+          <div><strong>Dershanenin çok altında bir bütçe</strong><span>Yılda ~₺1.200 (aylık ₺99,99). Ortalama dershane ₺70-80 bin — dershanenin %2'sinden az.</span></div>
         </li>
         <li>
           <span class="check">✓</span>
@@ -1378,7 +1394,7 @@ a { color: inherit; text-decoration: none; }
     </div>
     <div class="parents-visual">
       <h3>📊 Örnek haftalık özet</h3>
-      <p>Pazar günü e-mailinize gelir.</p>
+      <p>Uygulamadan tek dokunuşla paylaşılır.</p>
       <div class="parents-stats">
         <div class="stat">
           <div class="label">Bu hafta</div>
@@ -1412,7 +1428,7 @@ a { color: inherit; text-decoration: none; }
     <div class="pro-card">
       <span class="pro-badge">★ Lansman özel</span>
       <div class="pro-price">₺99,99<small>/ay</small></div>
-      <p class="pro-tag">Ortalama dershane ücretinin yaklaşık 100'de biri.</p>
+      <p class="pro-tag">Yılda ~₺1.200 — ortalama dershanenin %2'sinden az.</p>
       <ul class="pro-features">
         <li>Sınırsız can — yanlış cevap stresi yok</li>
         <li>Gelişmiş zorluk seviyeleri (D2/D3 soruları)</li>
@@ -1448,7 +1464,7 @@ a { color: inherit; text-decoration: none; }
       </details>
       <details class="faq-item">
         <summary>Veli olarak nasıl takip ederim?</summary>
-        <div class="faq-body">Çocuğunuz uygulama içinden "Veliye paylaş" diyerek e-mail adresinizi ekler. Pazar günü haftalık özet raporu otomatik olarak size gelir: kaç soru çözüldü, hangi konularda iyi, nerede zorlandı, günlük seri durumu.</div>
+        <div class="faq-body">Çocuğunuz uygulama içindeki "Veliye paylaş" ile özet raporu size gönderir — WhatsApp, e-posta veya SMS ile: kaç soru çözüldü, hangi konularda iyi, nerede zorlandı, günlük seri durumu.</div>
       </details>
       <details class="faq-item">
         <summary>Hangi platformlarda var?</summary>
@@ -1456,7 +1472,7 @@ a { color: inherit; text-decoration: none; }
       </details>
       <details class="faq-item">
         <summary>İçerikler MEB müfredatı ile uyumlu mu?</summary>
-        <div class="faq-body">Evet. 6 dersin tamamı — Türkçe, Matematik, Fen, İnkılap, Din Kültürü ve İngilizce — 8.500+ soruyla MEB müfredatına birebir uyumlu, Türkiye'nin sınav sistemine özel kalibre edilmiştir.</div>
+        <div class="faq-body">Evet. 6 dersin tamamı — Türkçe, Matematik, Fen, İnkılap, Din Kültürü ve İngilizce — ~10.000 soruyla MEB müfredatına birebir uyumlu, Türkiye'nin sınav sistemine özel kalibre edilmiştir.</div>
       </details>
     </div>
   </div>
