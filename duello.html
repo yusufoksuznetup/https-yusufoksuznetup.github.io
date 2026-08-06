@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Net Up – Meydan Okuma</title>
+  <meta name="description" content="Bir arkadaşın sana Net Up'ta meydan okudu. Aynı soruları çöz, skorunuzu karşılaştırın." />
+  <!-- WhatsApp/Telegram önizlemesi -->
+  <meta property="og:title" content="Sana meydan okundu! ⚡" />
+  <meta property="og:description" content="Net Up'ta aynı soruları çöz, skorunuzu karşılaştırın." />
+  <meta property="og:type" content="website" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #2D0F7F, #5B2ECC, #7C4DFF);
+      font-family: 'Nunito', sans-serif;
+      color: #fff;
+      padding: 24px;
+    }
+    .card {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 28px;
+      padding: 40px 32px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+    .logo { font-size: 48px; margin-bottom: 12px; }
+    h1 { font-size: 26px; font-weight: 900; margin-bottom: 8px; }
+    .subtitle { font-size: 15px; color: rgba(255,255,255,0.75); margin-bottom: 28px; line-height: 1.5; }
+    .code-box {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 18px;
+      padding: 18px;
+      margin-bottom: 22px;
+    }
+    .code-label { font-size: 11px; letter-spacing: 1.5px; color: rgba(255,255,255,0.55); font-weight: 700; }
+    .code { font-size: 32px; font-weight: 900; letter-spacing: 8px; margin-top: 6px; }
+    .copy-hint { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 8px; }
+    .spinner {
+      width: 48px; height: 48px;
+      border: 4px solid rgba(255,255,255,0.2);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+      margin: 0 auto 20px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .btn {
+      display: block;
+      background: #FF6B35;
+      color: #fff;
+      font-family: 'Nunito', sans-serif;
+      font-size: 16px;
+      font-weight: 900;
+      padding: 16px 32px;
+      border-radius: 16px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 12px;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.88; }
+    .btn-secondary { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); }
+    .store-links { display: flex; gap: 10px; margin-top: 6px; justify-content: center; flex-wrap: wrap; }
+    .store-links a {
+      background: rgba(0,0,0,0.3);
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      flex: 1;
+      min-width: 130px;
+    }
+    .hidden { display: none; }
+    .error-icon { font-size: 48px; margin-bottom: 12px; }
+  </style>
+</head>
+<body>
+<div class="card">
+
+  <!-- Yükleniyor: uygulama açılmaya çalışılıyor -->
+  <div id="state-loading">
+    <div class="spinner"></div>
+    <h1>Meydan okuma açılıyor…</h1>
+    <p class="subtitle">Net Up uygulamasına yönlendiriliyorsun.</p>
+  </div>
+
+  <!-- Uygulama açıldı -->
+  <div id="state-success" class="hidden">
+    <div class="logo">✅</div>
+    <h1>Uygulama açıldı!</h1>
+    <p class="subtitle">Meydan okuma Net Up'ta seni bekliyor.</p>
+  </div>
+
+  <!-- Uygulama kurulu değil: asıl senaryo — kod kaybolmasın -->
+  <div id="state-no-app" class="hidden">
+    <div class="logo">⚡</div>
+    <h1>Sana meydan okundu!</h1>
+    <p class="subtitle">Net Up'ı indir, aynı soruları çöz ve skorunuzu karşılaştır.</p>
+    <div class="code-box">
+      <div class="code-label">MEYDAN KODU</div>
+      <div class="code" id="code-text-1">------</div>
+      <div class="copy-hint">Uygulamayı açınca “Kodla Katıl” bölümüne yaz.</div>
+    </div>
+    <div class="store-links">
+      <a href="https://play.google.com/store/apps/details?id=com.netup.app">Google Play</a>
+      <a href="https://apps.apple.com/tr/app/id6768393770">App Store</a>
+    </div>
+    <button class="btn btn-secondary" style="margin-top:14px" onclick="tryOpen()">Uygulamam var, tekrar dene</button>
+  </div>
+
+  <!-- Masaüstü -->
+  <div id="state-desktop" class="hidden">
+    <div class="logo">⚡</div>
+    <h1>Sana meydan okundu!</h1>
+    <p class="subtitle">Bu meydan okumayı telefonundaki Net Up uygulamasında çözebilirsin.</p>
+    <div class="code-box">
+      <div class="code-label">MEYDAN KODU</div>
+      <div class="code" id="code-text-2">------</div>
+      <div class="copy-hint">Telefonunda Net Up'ı aç → “Kodla Katıl”.</div>
+    </div>
+    <div class="store-links">
+      <a href="https://play.google.com/store/apps/details?id=com.netup.app">Google Play</a>
+      <a href="https://apps.apple.com/tr/app/id6768393770">App Store</a>
+    </div>
+  </div>
+
+  <!-- Kod yok / hatalı bağlantı -->
+  <div id="state-invalid" class="hidden">
+    <div class="error-icon">⚠️</div>
+    <h1>Geçersiz bağlantı</h1>
+    <p class="subtitle">Bu meydan okuma bağlantısı eksik ya da hatalı. Arkadaşından bağlantıyı yeniden göndermesini iste.</p>
+  </div>
+
+</div>
+
+<script>
+  var params  = new URLSearchParams(window.location.search);
+  var code    = (params.get('kod') || params.get('code') || '').trim().toUpperCase();
+  var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  var appOpened = false;
+
+  function show(id) {
+    ['state-loading','state-success','state-no-app','state-desktop','state-invalid'].forEach(function(s) {
+      document.getElementById(s).classList.add('hidden');
+    });
+    document.getElementById(id).classList.remove('hidden');
+  }
+
+  function tryOpen() {
+    show('state-loading');
+    window.location.href = 'com.netup.app://duel?kod=' + encodeURIComponent(code);
+    setTimeout(function() { if (!appOpened) show('state-no-app'); }, 2500);
+  }
+
+  // Uygulama açılınca sekme arka plana düşer
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) { appOpened = true; show('state-success'); }
+  });
+
+  if (!code || code.length !== 6) {
+    show('state-invalid');
+  } else {
+    document.getElementById('code-text-1').textContent = code;
+    document.getElementById('code-text-2').textContent = code;
+    if (!isMobile) {
+      show('state-desktop');
+    } else {
+      tryOpen();
+    }
+  }
+</script>
+</body>
+</html>
