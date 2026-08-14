@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tarla Fiyat Hesaplama | Yaklaşık Tarla Değeri Tahmini (Ücretsiz) — Net Up</title>
+<meta name="description" content="Tarla fiyat hesaplama: bölge, dönüm, sulu/kuru arazi, yol cephesi ve tapu durumuna göre tarlanın yaklaşık değerini ücretsiz hesapla. Dönüm başı fiyat ve toplam tahmini değer aralığı.">
+<link rel="canonical" href="https://netup.website/tarla-fiyat-hesaplama.html">
+<meta name="theme-color" content="#5B3FB8">
+
+<meta property="og:title" content="Tarla Fiyat Hesaplama — Yaklaşık Değerini Anında Öğren">
+<meta property="og:description" content="Bölge, dönüm ve arazi özelliklerini gir; tarlanın tahmini değer aralığını ücretsiz hesapla.">
+<meta property="og:image" content="https://netup.website/assets/og-image.png">
+<meta property="og:url" content="https://netup.website/tarla-fiyat-hesaplama.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Net Up">
+<meta property="og:locale" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tarla Fiyat Hesaplama — Net Up">
+<meta name="twitter:description" content="Tarlanın yaklaşık değerini anında, ücretsiz hesapla.">
+<meta name="twitter:image" content="https://netup.website/assets/og-image.png">
+
+<link rel="icon" type="image/png" href="assets/app-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Google Analytics 4 — Net Up Web (G-XE7YQ3V03H) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XE7YQ3V03H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XE7YQ3V03H', { 'page_title': 'Tarla Fiyat Hesaplama', 'send_page_view': true, 'anonymize_ip': true });
+</script>
+
+<!-- SEO: yapısal veri -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Tarla Fiyat Hesaplama",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+  "url": "https://netup.website/tarla-fiyat-hesaplama.html",
+  "description": "Bölge, arazi büyüklüğü (dönüm/m²), sulu-kuru durumu, yol cephesi, tapu durumu ve konum özelliklerine göre tarlanın yaklaşık piyasa değerini tahmin eden ücretsiz araç."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Tarla fiyatı nasıl hesaplanır?", "acceptedAnswer": { "@type": "Answer", "text": "Tarla fiyatı temel olarak dönüm başı bölge birim fiyatı ile arazi büyüklüğünün çarpılmasıyla bulunur. Sulu arazi, yol cephesi, yerleşime yakınlık ve müstakil tapu değeri artırır; hisseli tapu, engebeli arazi ve ulaşım zorluğu değeri düşürür." } },
+    { "@type": "Question", "name": "1 dönüm kaç metrekaredir?", "acceptedAnswer": { "@type": "Answer", "text": "1 dönüm = 1.000 m²'dir. 1 hektar ise 10 dönüm, yani 10.000 m²'dir." } },
+    { "@type": "Question", "name": "Sulu tarla ile kuru tarla arasındaki fiyat farkı nedir?", "acceptedAnswer": { "@type": "Answer", "text": "Sulama imkânı olan (sulu) tarlalar, aynı bölgedeki kuru tarlalara göre genellikle 1,5 ile 2,5 kat daha değerlidir; çünkü ürün çeşitliliği ve verim çok daha yüksektir." } },
+    { "@type": "Question", "name": "Tarlamın gerçek değerini nasıl öğrenirim?", "acceptedAnswer": { "@type": "Answer", "text": "Kesin değer için bölgedeki güncel satılık ilanlarını inceleyin, yerel emlakçılara danışın ve gerekirse SPK lisanslı bir gayrimenkul değerleme uzmanından rapor alın. Belediyenin emlak rayiç bedeli de alt sınır için fikir verir." } }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --purple-900:#2E1A6B; --purple-700:#4C2EAA; --purple-600:#5B3FB8; --purple-500:#7C5CE0;
+  --purple-50:#F5F3FF; --orange:#F59E0B; --orange-dark:#D97706; --green:#10B981;
+  --gold:#FFB800; --bg:#FAFAFA; --surface:#FFFFFF; --ink-900:#0F0A2E; --ink-700:#2D2554;
+  --ink-500:#5B5680; --ink-300:#B8B5CC; --line:#ECEAF5;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink-900);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+
+/* Üst bar */
+.topbar{background:var(--surface);border-bottom:1px solid var(--line);padding:14px 0}
+.topbar .wrap{display:flex;align-items:center;gap:10px}
+.topbar img{width:34px;height:34px;border-radius:9px}
+.topbar .brand{font-weight:800;font-size:18px}
+.topbar .brand span{color:var(--purple-600)}
+.topbar .slogan{margin-left:auto;font-size:13px;color:var(--ink-500);font-weight:600}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,var(--purple-700),var(--purple-500));color:#fff;padding:40px 0 36px;text-align:center}
+.hero h1{font-size:30px;font-weight:800;line-height:1.2;margin-bottom:10px}
+.hero p{font-size:15px;opacity:.92;max-width:560px;margin:0 auto}
+
+/* Hesaplayıcı kartı */
+.calc{background:var(--surface);border-radius:20px;box-shadow:0 8px 30px rgba(46,26,107,.08);padding:22px;margin-top:-22px;position:relative;border:1px solid var(--line)}
+.calc h2{font-size:17px;font-weight:700;margin-bottom:4px}
+.calc .hint{font-size:13px;color:var(--ink-500);margin-bottom:16px}
+.field{margin-bottom:14px}
+.field label{display:block;font-weight:600;font-size:14px;margin-bottom:6px}
+.field label small{color:var(--ink-300);font-weight:500}
+.field select,.field input{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:10px;font-family:inherit;font-size:15px;font-weight:600;color:var(--ink-900);background:var(--surface)}
+.field select:focus,.field input:focus{outline:none;border-color:var(--purple-500)}
+.field input.err{border-color:#EF4444;background:#FEF2F2}
+.field .note{font-size:12px;color:var(--ink-500);margin-top:5px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:520px){.row2{grid-template-columns:1fr}}
+
+/* Seçenek pill'leri */
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.pills input{display:none}
+.pills label{display:inline-flex;align-items:center;padding:9px 14px;border:1.5px solid var(--line);border-radius:999px;font-size:13.5px;font-weight:600;cursor:pointer;transition:.15s;color:var(--ink-700);margin:0}
+.pills input:checked+label{background:var(--purple-600);border-color:var(--purple-600);color:#fff}
+
+.calc-actions{display:flex;gap:10px;margin-top:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:inherit;font-weight:700;font-size:15px;border-radius:12px;padding:13px 18px;cursor:pointer;border:none;transition:.15s}
+.btn-primary{background:var(--purple-600);color:#fff;flex:1}
+.btn-primary:hover{background:var(--purple-700)}
+.btn-ghost{background:var(--purple-50);color:var(--purple-700)}
+.btn-ghost:hover{background:#ECE7FB}
+
+/* Sonuç */
+.result{display:none;margin-top:18px;border-radius:16px;overflow:hidden;border:1px solid var(--line)}
+.result.show{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.result .score{background:linear-gradient(135deg,var(--purple-700),var(--purple-500));color:#fff;text-align:center;padding:22px}
+.result .score .label{font-size:13px;opacity:.9;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.result .score .big{font-size:38px;font-weight:800;line-height:1.15;margin:4px 0}
+.result .score .tn{font-size:14px;opacity:.92}
+.result .score .tn b{color:var(--gold)}
+.result .breakdown{background:var(--surface);padding:14px 18px}
+.result .row{display:flex;justify-content:space-between;font-size:14px;padding:6px 0;border-bottom:1px dashed var(--line)}
+.result .row:last-child{border-bottom:none}
+.result .row .val{font-weight:700}
+
+/* Uyarı kutusu */
+.notice{margin-top:16px;background:#FFF8EB;border:1px solid #FDE8C2;border-radius:14px;padding:14px 16px;font-size:13px;color:#7A5A12;line-height:1.55}
+.notice b{color:#5E4508}
+
+/* İçerik / SSS */
+.content{padding:34px 0 10px}
+.content h2{font-size:20px;font-weight:800;margin:26px 0 10px}
+.content p,.content li{font-size:14.5px;color:var(--ink-700)}
+.content ul{padding-left:20px;margin:8px 0}
+.content li{margin-bottom:6px}
+
+/* Footer */
+footer{border-top:1px solid var(--line);margin-top:40px;padding:22px 0 30px;text-align:center;font-size:13px;color:var(--ink-500)}
+footer a{color:var(--purple-600);font-weight:600}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <img src="assets/app-icon.png" alt="Net Up logo">
+    <div class="brand">Net <span>Up</span></div>
+    <div class="slogan">Ücretsiz hesaplama araçları</div>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>Tarla Fiyat Hesaplama</h1>
+    <p>Bölgeni, tarlanın büyüklüğünü ve özelliklerini gir; yaklaşık piyasa değer aralığını anında öğren. Tamamen ücretsiz.</p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="calc">
+    <h2>Tarla bilgilerini gir</h2>
+    <p class="hint">En doğru sonuç için bölgendeki gerçek dönüm fiyatını biliyorsan onu yaz; bilmiyorsan bölge seçince ortalama bir varsayılan kullanılır.</p>
+
+    <div class="row2">
+      <div class="field">
+        <label for="region">Bölge</label>
+        <select id="region">
+          <option value="marmara">Marmara</option>
+          <option value="ege">Ege</option>
+          <option value="akdeniz">Akdeniz</option>
+          <option value="icanadolu" selected>İç Anadolu</option>
+          <option value="karadeniz">Karadeniz</option>
+          <option value="doguanadolu">Doğu Anadolu</option>
+          <option value="guneydogu">Güneydoğu Anadolu</option>
+        </select>
+        <div class="note">Bölge, varsayılan dönüm fiyatını belirler.</div>
+      </div>
+      <div class="field">
+        <label for="unitPrice">Dönüm fiyatı <small>(TL, kuru tarla — istersen değiştir)</small></label>
+        <input type="text" id="unitPrice" inputmode="numeric" placeholder="ör. 150.000">
+        <div class="note" id="unitNote">Bölge ortalaması otomatik dolduruldu.</div>
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="field">
+        <label for="area">Arazi büyüklüğü</label>
+        <input type="text" id="area" inputmode="decimal" placeholder="ör. 12">
+      </div>
+      <div class="field">
+        <label for="areaUnit">Birim</label>
+        <select id="areaUnit">
+          <option value="donum" selected>Dönüm (1.000 m²)</option>
+          <option value="m2">Metrekare (m²)</option>
+          <option value="hektar">Hektar (10 dönüm)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Sulama durumu</label>
+      <div class="pills">
+        <input type="radio" name="water" id="w-kuru" value="1" checked><label for="w-kuru">Kuru tarla</label>
+        <input type="radio" name="water" id="w-kismi" value="1.4"><label for="w-kismi">Kısmen sulanabilir</label>
+        <input type="radio" name="water" id="w-sulu" value="2"><label for="w-sulu">Sulu tarla</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Yol durumu</label>
+      <div class="pills">
+        <input type="radio" name="road" id="r-yok" value="0.85"><label for="r-yok">Yolu yok</label>
+        <input type="radio" name="road" id="r-toprak" value="1" checked><label for="r-toprak">Toprak / kadastro yolu</label>
+        <input type="radio" name="road" id="r-asfalt" value="1.15"><label for="r-asfalt">Asfalt yola cepheli</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Tapu durumu</label>
+      <div class="pills">
+        <input type="radio" name="deed" id="d-mustakil" value="1" checked><label for="d-mustakil">Müstakil tapu</label>
+        <input type="radio" name="deed" id="d-hisseli" value="0.8"><label for="d-hisseli">Hisseli tapu</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Konum <small>(yerleşim yerine yakınlık)</small></label>
+      <div class="pills">
+        <input type="radio" name="loc" id="l-uzak" value="0.9"><label for="l-uzak">Köye/ilçeye uzak</label>
+        <input type="radio" name="loc" id="l-normal" value="1" checked><label for="l-normal">Normal mesafede</label>
+        <input type="radio" name="loc" id="l-yakin" value="1.35"><label for="l-yakin">Yerleşime çok yakın</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Arazi yapısı ve verim</label>
+      <div class="pills">
+        <input type="radio" name="soil" id="s-zayif" value="0.85"><label for="s-zayif">Engebeli / zayıf toprak</label>
+        <input type="radio" name="soil" id="s-orta" value="1" checked><label for="s-orta">Ortalama</label>
+        <input type="radio" name="soil" id="s-verimli" value="1.2"><label for="s-verimli">Düz ve verimli</label>
+      </div>
+    </div>
+
+    <div class="calc-actions">
+      <button class="btn btn-primary" id="calcBtn">Değeri Hesapla</button>
+      <button class="btn btn-ghost" id="resetBtn">Sıfırla</button>
+    </div>
+
+    <div class="result" id="result">
+      <div class="score">
+        <div class="label">Tahmini Değer Aralığı</div>
+        <div class="big" id="rangeText">—</div>
+        <div class="tn">Orta nokta: <b id="midText">—</b></div>
+      </div>
+      <div class="breakdown" id="breakdown"></div>
+    </div>
+
+    <div class="notice">
+      <b>Önemli:</b> Bu sonuç kaba bir tahmindir; varsayılan dönüm fiyatları bölgesel ortalamalara dayanan temsili değerlerdir ve güncel piyasayı birebir yansıtmayabilir. Kesin değer için bölgendeki güncel satılık ilanları, yerel emlakçılar ve SPK lisanslı bir değerleme uzmanına danışmalısın.
+    </div>
+  </div>
+
+  <div class="content">
+    <h2>Tarla fiyatını ne belirler?</h2>
+    <ul>
+      <li><b>Sulama:</b> Sulu tarla, aynı bölgedeki kuru tarladan genellikle 1,5–2,5 kat daha değerlidir.</li>
+      <li><b>Konum:</b> Yerleşim yerine, ana yola ve pazara yakınlık fiyatı ciddi şekilde artırır.</li>
+      <li><b>Yol cephesi:</b> Asfalt yola cepheli parseller daha kolay alıcı bulur.</li>
+      <li><b>Tapu durumu:</b> Hisseli tapular, satış ve kullanım zorluğu nedeniyle müstakil tapudan ucuzdur.</li>
+      <li><b>Toprak kalitesi:</b> Düz, taşsız ve verimli araziler prim yapar.</li>
+      <li><b>İmar beklentisi:</b> Gelişme alanına yakın tarlalar, tarımsal değerinin çok üzerinde fiyatlanabilir (bu araç imar beklentisini hesaba katmaz).</li>
+    </ul>
+
+    <h2>Birim çevirileri</h2>
+    <ul>
+      <li>1 dönüm = 1.000 m²</li>
+      <li>1 hektar = 10 dönüm = 10.000 m²</li>
+    </ul>
+
+    <h2>Kesin değeri nasıl öğrenirsin?</h2>
+    <p>Sahibinden benzeri ilan sitelerinde aynı mahalle/köydeki güncel tarla ilanlarını karşılaştır, yerel emlakçılara danış ve resmî bir rapor gerekiyorsa SPK lisanslı gayrimenkul değerleme uzmanı ile çalış. Belediyenin emlak rayiç bedeli de alt sınır hakkında fikir verir.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <a href="/">← Ana sayfaya dön</a> · Net Up ücretsiz araçları
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Bölgesel varsayılan kuru tarla dönüm fiyatları (TL) — temsili ortalamalar
+  var REGION_PRICES = {
+    marmara: 250000,
+    ege: 220000,
+    akdeniz: 230000,
+    icanadolu: 120000,
+    karadeniz: 130000,
+    doguanadolu: 70000,
+    guneydogu: 100000
+  };
+
+  var region = document.getElementById('region');
+  var unitPrice = document.getElementById('unitPrice');
+  var unitNote = document.getElementById('unitNote');
+  var area = document.getElementById('area');
+  var areaUnit = document.getElementById('areaUnit');
+  var result = document.getElementById('result');
+  var userEditedPrice = false;
+
+  function fmt(n){
+    return new Intl.NumberFormat('tr-TR', {maximumFractionDigits:0}).format(n);
+  }
+  function parseNum(str){
+    if(!str) return NaN;
+    return parseFloat(String(str).replace(/\./g,'').replace(',','.'));
+  }
+
+  function fillRegionPrice(){
+    unitPrice.value = fmt(REGION_PRICES[region.value]);
+    unitNote.textContent = 'Bölge ortalaması otomatik dolduruldu.';
+    userEditedPrice = false;
+  }
+  region.addEventListener('change', fillRegionPrice);
+  unitPrice.addEventListener('input', function(){
+    userEditedPrice = true;
+    unitNote.textContent = 'Kendi girdiğin dönüm fiyatı kullanılacak.';
+  });
+  unitPrice.addEventListener('blur', function(){
+    var v = parseNum(unitPrice.value);
+    if(!isNaN(v)) unitPrice.value = fmt(v);
+  });
+  fillRegionPrice();
+
+  function radioVal(name){
+    return parseFloat(document.querySelector('input[name="'+name+'"]:checked').value);
+  }
+
+  document.getElementById('calcBtn').addEventListener('click', function(){
+    var price = parseNum(unitPrice.value);
+    var a = parseNum(area.value);
+    var ok = true;
+    unitPrice.classList.toggle('err', !(price > 0)); if(!(price > 0)) ok = false;
+    area.classList.toggle('err', !(a > 0)); if(!(a > 0)) ok = false;
+    if(!ok){ result.classList.remove('show'); return; }
+
+    var donum = a;
+    if(areaUnit.value === 'm2') donum = a / 1000;
+    if(areaUnit.value === 'hektar') donum = a * 10;
+
+    var factor = radioVal('water') * radioVal('road') * radioVal('deed') * radioVal('loc') * radioVal('soil');
+    var perDonum = price * factor;
+    var mid = perDonum * donum;
+    var low = mid * 0.8, high = mid * 1.25;
+
+    document.getElementById('rangeText').textContent = fmt(low) + ' – ' + fmt(high) + ' TL';
+    document.getElementById('midText').textContent = fmt(mid) + ' TL';
+
+    var rows = [
+      ['Arazi büyüklüğü', donum.toLocaleString('tr-TR',{maximumFractionDigits:1}) + ' dönüm (' + fmt(donum*1000) + ' m²)'],
+      ['Baz dönüm fiyatı', fmt(price) + ' TL'],
+      ['Özellik çarpanı', '× ' + factor.toLocaleString('tr-TR',{maximumFractionDigits:2})],
+      ['Düzeltilmiş dönüm fiyatı', fmt(perDonum) + ' TL'],
+      ['Tahmini toplam değer', fmt(mid) + ' TL']
+    ];
+    document.getElementById('breakdown').innerHTML = rows.map(function(r){
+      return '<div class="row"><span>'+r[0]+'</span><span class="val">'+r[1]+'</span></div>';
+    }).join('');
+
+    result.classList.add('show');
+    result.scrollIntoView({behavior:'smooth', block:'nearest'});
+    if (typeof gtag === 'function') gtag('event', 'tarla_hesapla', { donum: donum, bolge: region.value });
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', function(){
+    area.value = '';
+    area.classList.remove('err');
+    unitPrice.classList.remove('err');
+    fillRegionPrice();
+    ['w-kuru','r-toprak','d-mustakil','l-normal','s-orta'].forEach(function(id){
+      document.getElementById(id).checked = true;
+    });
+    result.classList.remove('show');
+  });
+})();
+</script>
+</body>
+</html>
