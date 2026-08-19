@@ -1651,6 +1651,58 @@ document.querySelectorAll('#navLinks a').forEach(a => {
   });
 })();
 
+// =============================================================
+// Kampanya etiketi aktarımı — UTM → Play Install Referrer / App Store ct
+// Reklamdan gelen ziyaretçinin kaynağı mağaza linkine taşınır; böylece
+// kurulum uygulamada doğru kanala yazılır (SDK gerekmez).
+// Android: referrer= parametresi Play Install Referrer ile okunur ve
+//   uygulamada profiles.asa_attribution_raw içine düşer.
+// iOS: ct= parametresi App Store Connect > Analytics > Campaigns'te görünür.
+// Etiketsiz (organik) ziyaretçinin linkine DOKUNULMAZ — mevcut davranış korunur.
+// =============================================================
+(function() {
+  var KEY = 'netup_campaign';
+  var q = new URLSearchParams(location.search);
+  var c = null;
+
+  if (q.get('utm_source')) {
+    c = {
+      source: q.get('utm_source'),
+      medium: q.get('utm_medium') || 'referral',
+      campaign: q.get('utm_campaign') || '',
+      content: q.get('utm_content') || ''
+    };
+    try { sessionStorage.setItem(KEY, JSON.stringify(c)); } catch (e) {}
+  } else {
+    try { c = JSON.parse(sessionStorage.getItem(KEY) || 'null'); } catch (e) { c = null; }
+  }
+  if (!c || !c.source) return;
+
+  // DİKKAT: uygulama 'cpc' | 'paid' | 'paidsearch' medium'unu Google Ads
+  // sayıyor (attribution_service.dart). Google dışı kaynakta bu değerler
+  // harcamayı yanlış kanala yazardı, o yüzden güvenli değere çevriliyor.
+  if (!/google/i.test(c.source) && /^(cpc|paid|paidsearch)$/i.test(c.medium)) {
+    c.medium = 'paid_social';
+  }
+
+  var referrer = encodeURIComponent(
+    'utm_source=' + c.source +
+    '&utm_medium=' + c.medium +
+    (c.campaign ? '&utm_campaign=' + c.campaign : '') +
+    (c.content ? '&utm_content=' + c.content : '')
+  );
+  var ct = encodeURIComponent((c.source + '_' + (c.campaign || 'genel')).slice(0, 40));
+
+  document.querySelectorAll('a[href*="play.google.com"]').forEach(function(link) {
+    if (link.href.indexOf('referrer=') > -1) return;
+    link.href += (link.href.indexOf('?') > -1 ? '&' : '?') + 'referrer=' + referrer;
+  });
+  document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function(link) {
+    if (link.href.indexOf('ct=') > -1) return;
+    link.href += (link.href.indexOf('?') > -1 ? '&' : '?') + 'ct=' + ct;
+  });
+})();
+
 // IntersectionObserver reveal animation
 const reveals = document.querySelectorAll('.feature-card, .how-step, .pro-card, .parents-visual');
 reveals.forEach(el => el.classList.add('reveal'));
