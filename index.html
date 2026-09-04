@@ -25,41 +25,42 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- =============================================================
-     Google Analytics 4 — Net Up Web property
-     Measurement ID: G-XE7YQ3V03H (8 May 2026, netup.website)
-     Olaylar: page_view, store_click, video_play, scroll_depth, outbound_click
+     Analytics & Ads — GA4 (G-XE7YQ3V03H) + Meta Pixel (1031762782588276)
+     Yalnızca çerez onayı verildikten SONRA yüklenir (bkz. #cookieConsent
+     banner'ı ve netupLoadAnalytics() çağrısı, body sonunda).
+     Olaylar: page_view, store_click, video_play, scroll_depth, outbound_click, StoreClick
      ============================================================= -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XE7YQ3V03H"></script>
 <script>
+window.netupLoadAnalytics = function() {
+  if (window.netupAnalyticsLoaded) return;
+  window.netupAnalyticsLoaded = true;
+
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  window.gtag = gtag;
   gtag('js', new Date());
   gtag('config', 'G-XE7YQ3V03H', {
     'page_title': 'Net Up — Landing',
     'send_page_view': true,
     'anonymize_ip': true
   });
-</script>
+  var gaScript = document.createElement('script');
+  gaScript.async = true;
+  gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-XE7YQ3V03H';
+  document.head.appendChild(gaScript);
 
-<!-- =============================================================
-     Meta Pixel — Net Up Web veri seti (Pixel ID: 1031762782588276)
-     Olaylar: PageView, StoreClick (özel olay — mağaza butonu tıklaması)
-     ============================================================= -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1031762782588276');
-fbq('track', 'PageView');
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1031762782588276');
+  fbq('track', 'PageView');
+};
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1031762782588276&ev=PageView&noscript=1"
-/></noscript>
 
 <style>
 :root {
@@ -140,10 +141,15 @@ a { color: inherit; text-decoration: none; }
 .brand img { width: 36px; height: 36px; border-radius: 9px; }
 .nav-links {
   display: flex;
-  gap: 36px;
+  gap: 20px;
   list-style: none;
   font-weight: 500;
   color: var(--ink-700);
+}
+.nav-links a {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 8px;
 }
 .nav-links a:hover { color: var(--purple-600); }
 .nav-cta { display: flex; align-items: center; gap: 12px; }
@@ -651,6 +657,13 @@ a { color: inherit; text-decoration: none; }
 .feature-icon.rose   { background: linear-gradient(135deg, #FCE7F3, #FBCFE8); }
 .feature-icon.sky    { background: linear-gradient(135deg, #DBEAFE, #BFDBFE); }
 .feature-icon.indigo { background: linear-gradient(135deg, #E0E7FF, #C7D2FE); }
+.feature-icon svg { width: 26px; height: 26px; stroke: currentColor; stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.feature-icon.violet svg { color: #7C3AED; }
+.feature-icon.amber  svg { color: #B45309; }
+.feature-icon.green  svg { color: #059669; }
+.feature-icon.rose   svg { color: #DB2777; }
+.feature-icon.sky    svg { color: #0284C7; }
+.feature-icon.indigo svg { color: #4F46E5; }
 .feature-card h3 {
   font-size: 20px;
   font-weight: 700;
@@ -689,10 +702,10 @@ a { color: inherit; text-decoration: none; }
   width: 46px; height: 46px;
   border-radius: 12px;
   display: inline-flex; align-items: center; justify-content: center;
-  font-size: 24px;
   background: var(--purple-50);
   flex-shrink: 0;
 }
+.subject-emoji svg { width: 22px; height: 22px; color: var(--purple-600); stroke: currentColor; stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 .subject-pill .subj-name { font-size: 16px; font-weight: 700; color: var(--ink-900); display: block; }
 .subject-pill .subj-count { font-size: 13px; color: var(--purple-600); font-weight: 600; }
 .subjects-note { text-align: center; margin-top: 22px; font-size: 14px; color: var(--ink-500); }
@@ -1078,9 +1091,14 @@ a { color: inherit; text-decoration: none; }
     right: 0;
     flex-direction: column;
     background: #fff;
-    padding: 20px;
+    padding: 8px 20px;
     border-bottom: 1px solid var(--line);
-    gap: 18px;
+    gap: 4px;
+  }
+  .nav-links.open a {
+    display: block;
+    width: 100%;
+    padding: 14px 4px;
   }
   .nav-cta .btn { display: none; }
   .section { padding: 64px 0; }
@@ -1090,6 +1108,35 @@ a { color: inherit; text-decoration: none; }
   .pro-card { padding: 36px 24px; }
   .pro-price { font-size: 52px; }
   .strip-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* === COOKIE CONSENT === */
+.cookie-consent {
+  position: fixed;
+  left: 16px; right: 16px; bottom: 16px;
+  z-index: 200;
+  max-width: 620px;
+  margin: 0 auto;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 22px 24px;
+}
+.cookie-consent[hidden] { display: none; }
+.cookie-consent p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-700);
+  margin: 0 0 16px;
+}
+.cookie-consent p a { color: var(--purple-600); text-decoration: underline; }
+.cookie-consent-actions { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
+.cookie-consent-actions .btn { padding: 11px 20px; font-size: 14px; }
+@media (max-width: 480px) {
+  .cookie-consent { left: 10px; right: 10px; bottom: 10px; padding: 18px; }
+  .cookie-consent-actions { justify-content: stretch; }
+  .cookie-consent-actions .btn { flex: 1 1 auto; }
 }
 
 /* Reveal animation */
@@ -1109,9 +1156,9 @@ a { color: inherit; text-decoration: none; }
 
 <!-- ======================== HEADER ======================== -->
 <header class="header">
-  <div class="container nav">
+  <nav class="container nav" aria-label="Ana menü">
     <a href="#" class="brand" aria-label="Net Up ana sayfa">
-      <img src="assets/app-icon.png" alt="" onerror="this.style.display='none'">
+      <img src="assets/app-icon-nav.png" alt="" onerror="this.style.display='none'">
       <span>Net Up</span>
     </a>
     <ul class="nav-links" id="navLinks">
@@ -1123,11 +1170,12 @@ a { color: inherit; text-decoration: none; }
     </ul>
     <div class="nav-cta">
       <a href="https://play.google.com/store/apps/details?id=com.netup.app" class="btn btn-primary" rel="noopener">Ücretsiz İndir</a>
-      <button class="nav-toggle" aria-label="Menüyü aç" onclick="document.getElementById('navLinks').classList.toggle('open')"><span></span></button>
+      <button class="nav-toggle" aria-label="Menüyü aç" aria-expanded="false" aria-controls="navLinks" onclick="var o=document.getElementById('navLinks').classList.toggle('open'); this.setAttribute('aria-expanded', o);"><span></span></button>
     </div>
-  </div>
+  </nav>
 </header>
 
+<main>
 <!-- ======================== HERO ======================== -->
 <section class="hero">
   <div class="container">
@@ -1199,7 +1247,7 @@ a { color: inherit; text-decoration: none; }
           </div>
         </div>
       </div>
-      <img src="assets/neto-mascot.png" alt="" class="hero-mascot" onerror="this.style.display='none'">
+      <img src="assets/neto-mascot.png" alt="Net Up maskotu Neto, mor kapüşonluyla sevinçle zıplıyor" class="hero-mascot" onerror="this.style.display='none'">
     </div>
   </div>
 </section>
@@ -1226,32 +1274,32 @@ a { color: inherit; text-decoration: none; }
     </div>
     <div class="features-grid">
       <div class="feature-card">
-        <div class="feature-icon amber">🎯</div>
+        <div class="feature-icon amber" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="2"/></svg></div>
         <h3>Günde 10 dakika yeter</h3>
         <p>Saatlerce ders çalışmak yerine küçük adımlar at. Her gün düzenli tekrar uzun saatlik seanslardan daha etkili.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon rose">🔥</div>
+        <div class="feature-icon rose" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3c.5 2.5-.8 3.8-2.2 5.4C8.3 10.1 7 12 7 14.5 7 18.6 9.7 21 13 21c3.3 0 6-2.2 6-6 0-2.8-1.6-4.6-3-6.3-.4 1.7-1.4 2.7-2.3 3.2C14.3 9.5 13.6 6 12 3Z"/></svg></div>
         <h3>Günlük seri</h3>
         <p>Günlük seri sayacı seni her gün uygulamayı açmaya teşvik eder. Serini bozma!</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon violet">🏆</div>
+        <div class="feature-icon violet" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4h10v4a5 5 0 0 1-10 0V4Z"/><path d="M7 5H4v1a4 4 0 0 0 4 4"/><path d="M17 5h3v1a4 4 0 0 1-4 4"/><path d="M12 13v3"/><path d="M9 21h6"/><path d="M9.5 21c0-2.2.9-3 2.5-3s2.5.8 2.5 3"/></svg></div>
         <h3>Lig sistemi</h3>
         <p>Haftalık liderlik tablosunda arkadaşlarınla yarış, zirveye çık, rozet kazan.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon indigo">🤖</div>
+        <div class="feature-icon indigo" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 10.5h.01"/><path d="M15.5 10.5h.01"/><path d="M8 15c1.2 1.3 2.6 2 4 2s2.8-.7 4-2"/></svg></div>
         <h3>Maskotun Neto</h3>
         <p>Yol arkadaşın Neto her doğru cevapta, her zorlandığın anda yanında. Soyut bir uygulama değil — sevdiğin bir karakter.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon green">📊</div>
+        <div class="feature-icon green" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V10"/><path d="M12 20V4"/><path d="M20 20v-7"/><path d="M2 20h20"/></svg></div>
         <h3>Veli raporu</h3>
         <p>Anne ve baban gelişimini görsün. Tek dokunuşla özet paylaş: kaç soru çözüldü, hangi konuda zorlanıldı, seri durumu.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon sky">📚</div>
+        <div class="feature-icon sky" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 6c-1.5-1.3-3.5-2-6-2H3v14h3c2.5 0 4.5.7 6 2 1.5-1.3 3.5-2 6-2h3V4h-3c-2.5 0-4.5.7-6 2Z"/><path d="M12 6v14"/></svg></div>
         <h3>MEB müfredat uyumlu</h3>
         <p>Türkçe, Matematik, Fen, İnkılap, Din ve İngilizce — ~10.000 soru, tümü MEB müfredatına birebir uyumlu, Türkiye sınav sistemine özel kalibre.</p>
       </div>
@@ -1268,12 +1316,12 @@ a { color: inherit; text-decoration: none; }
       <p class="section-sub">Tüm LGS dersleri tek uygulamada — hepsi MEB müfredatına birebir uyumlu.</p>
     </div>
     <div class="subjects-grid">
-      <div class="subject-pill"><div class="subject-emoji">📖</div><div><span class="subj-name">Türkçe</span><span class="subj-count">binlerce soru</span></div></div>
-      <div class="subject-pill"><div class="subject-emoji">🔢</div><div><span class="subj-name">Matematik</span><span class="subj-count">binlerce soru</span></div></div>
-      <div class="subject-pill"><div class="subject-emoji">🔬</div><div><span class="subj-name">Fen Bilimleri</span><span class="subj-count">binlerce soru</span></div></div>
-      <div class="subject-pill"><div class="subject-emoji">🏛️</div><div><span class="subj-name">T.C. İnkılap Tarihi</span><span class="subj-count">yüzlerce soru</span></div></div>
-      <div class="subject-pill"><div class="subject-emoji">🕌</div><div><span class="subj-name">Din Kültürü</span><span class="subj-count">yüzlerce soru</span></div></div>
-      <div class="subject-pill"><div class="subject-emoji">🌍</div><div><span class="subj-name">İngilizce</span><span class="subj-count">yüzlerce soru</span></div></div>
+      <div class="subject-pill"><div class="subject-emoji" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v17H6.5A2.5 2.5 0 0 0 4 21.5v-17Z"/><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/></svg></div><div><span class="subj-name">Türkçe</span><span class="subj-count">binlerce soru</span></div></div>
+      <div class="subject-pill"><div class="subject-emoji" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="2.5" width="16" height="19" rx="2"/><path d="M8 7h8"/><circle cx="8" cy="12.5" r="1"/><circle cx="12" cy="12.5" r="1"/><circle cx="16" cy="12.5" r="1"/><circle cx="8" cy="16.5" r="1"/><circle cx="12" cy="16.5" r="1"/><circle cx="16" cy="16.5" r="1"/></svg></div><div><span class="subj-name">Matematik</span><span class="subj-count">binlerce soru</span></div></div>
+      <div class="subject-pill"><div class="subject-emoji" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 2h6"/><path d="M10 2v6.5L4.5 18a2 2 0 0 0 1.7 3h11.6a2 2 0 0 0 1.7-3L14 8.5V2"/><path d="M7.5 15h9"/></svg></div><div><span class="subj-name">Fen Bilimleri</span><span class="subj-count">binlerce soru</span></div></div>
+      <div class="subject-pill"><div class="subject-emoji" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V10"/><path d="M9 21V10"/><path d="M15 21V10"/><path d="M19 21V10"/><path d="M2 10l10-6 10 6"/></svg></div><div><span class="subj-name">T.C. İnkılap Tarihi</span><span class="subj-count">yüzlerce soru</span></div></div>
+      <div class="subject-pill"><div class="subject-emoji" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 12.5A7 7 0 1 1 10.8 4a5.5 5.5 0 0 0 7.2 8.5Z"/><path d="M19.5 3.5l.6 1.5 1.5.6-1.5.6-.6 1.5-.6-1.5-1.5-.6 1.5-.6z"/></svg></div><div><span class="subj-name">Din Kültürü</span><span class="subj-count">yüzlerce soru</span></div></div>
+      <div class="subject-pill"><div class="subject-emoji" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 4 5.8 4 9s-1.5 6.5-4 9c-2.5-2.5-4-5.8-4-9s1.5-6.5 4-9Z"/></svg></div><div><span class="subj-name">İngilizce</span><span class="subj-count">yüzlerce soru</span></div></div>
     </div>
     <p class="subjects-note">📈 Soru bankası <strong>her gün büyüyor</strong> — düzenli olarak yeni sorular ekleniyor.</p>
   </div>
@@ -1333,32 +1381,32 @@ a { color: inherit; text-decoration: none; }
     </div>
     <div class="features-grid">
       <div class="feature-card">
-        <div class="feature-icon rose">🎮</div>
+        <div class="feature-icon rose" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="7.5" width="19" height="10" rx="4"/><path d="M7 10.5v4"/><path d="M5 12.5h4"/><circle cx="15.5" cy="10.5" r="1"/><circle cx="18" cy="13" r="1"/></svg></div>
         <h3>Ödev gibi değil, oyun gibi</h3>
         <p>Günlük seri, rozet ve ligle soru çözmek angarya olmaktan çıkar — öğrenci her gün kendi isteğiyle açar.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon violet">📈</div>
+        <div class="feature-icon violet" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></div>
         <h3>Netin gözle görülür artar</h3>
         <p>Yanlış yapılan sorular akıllıca tekrar sorulur; eksikler kapanır, ilerleme XP ve seriyle somutlaşır.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon indigo">🤝</div>
+        <div class="feature-icon indigo" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="7" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
         <h3>Motivasyon hep yüksek</h3>
         <p>Maskot Neto ve haftalık ligle öğrenci yalnız hissetmez — çalışmak bir alışkanlığa dönüşür.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon green">👀</div>
+        <div class="feature-icon green" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></div>
         <h3>Ne yaptığını görürsünüz</h3>
         <p>Tek dokunuşla veliye rapor: kaç soru çözüldü, hangi konuda zorlanıldı, ne kadar çalışıldı — WhatsApp, e-posta veya SMS ile.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon sky">⏱️</div>
+        <div class="feature-icon sky" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
         <h3>Ekran değil, çalışma</h3>
         <p>Telefonda boşa geçen zaman değil — çocuğunuzun gerçekten çalıştığı dakikaları takip edersiniz.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon amber">💸</div>
+        <div class="feature-icon amber" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="6.5" width="19" height="13" rx="2.5"/><path d="M2.5 10.5h19"/><circle cx="17" cy="14.5" r="1.2"/></svg></div>
         <h3>Dershane bütçesi yok</h3>
         <p>Aylık ₺99,99 → yılda ~₺1.200. Ortalama dershane ₺70-80 bin — yani %2'sinden az.</p>
       </div>
@@ -1497,11 +1545,13 @@ a { color: inherit; text-decoration: none; }
 </section>
 
 <!-- ======================== FOOTER ======================== -->
+</main>
+
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="brand"><img src="assets/app-icon.png" alt="" onerror="this.style.display='none'"><span>Net Up</span></div>
+        <div class="brand"><img src="assets/app-icon-nav.png" alt="" onerror="this.style.display='none'"><span>Net Up</span></div>
         <p>6, 7 ve 8. sınıf öğrencileri için günde 10 dakikada keyifle LGS hazırlığı. Aç. Çöz. Yüksel.</p>
       </div>
       <div>
@@ -1527,6 +1577,7 @@ a { color: inherit; text-decoration: none; }
           <li><a href="https://netup.website/netup-privacy">Gizlilik</a></li>
           <li><a href="https://netup.website/netup-delete.html">Hesap silme</a></li>
           <li><a href="mailto:destek@netup.website">İletişim</a></li>
+          <li><a href="#" data-cookie-settings>Çerez Tercihleri</a></li>
         </ul>
       </div>
     </div>
@@ -1537,7 +1588,60 @@ a { color: inherit; text-decoration: none; }
   </div>
 </footer>
 
+<div id="cookieConsent" class="cookie-consent" role="region" aria-label="Çerez tercihleri" hidden>
+  <p>
+    Bu site, ziyaretleri anlamak ve reklamlarımızın etkisini ölçmek için Google Analytics ve Meta
+    (Facebook) piksel çerezlerini kullanır. Bu çerezlere yalnızca onay verirseniz izin veririz.
+    Detaylar için <a href="https://netup.website/netup-privacy">Gizlilik Politikamıza</a> bakabilirsiniz.
+  </p>
+  <div class="cookie-consent-actions">
+    <button type="button" class="btn btn-ghost" id="cookieReject">Reddet</button>
+    <button type="button" class="btn btn-primary" id="cookieAccept">Kabul Et</button>
+  </div>
+</div>
+
 <script>
+// =============================================================
+// Çerez onayı (KVKK/GDPR) — GA4 ve Meta Pixel yalnız onay sonrası yüklenir
+// =============================================================
+(function() {
+  var CONSENT_KEY = 'netup_cookie_consent'; // 'granted' | 'denied'
+  var banner = document.getElementById('cookieConsent');
+  var acceptBtn = document.getElementById('cookieAccept');
+  var rejectBtn = document.getElementById('cookieReject');
+
+  function getConsent() {
+    try { return localStorage.getItem(CONSENT_KEY); } catch (e) { return null; }
+  }
+  function setConsent(value) {
+    try { localStorage.setItem(CONSENT_KEY, value); } catch (e) {}
+  }
+
+  var consent = getConsent();
+  if (consent === 'granted') {
+    window.netupLoadAnalytics();
+  } else if (consent !== 'denied' && banner) {
+    banner.hidden = false;
+  }
+
+  if (acceptBtn) acceptBtn.addEventListener('click', function() {
+    setConsent('granted');
+    if (banner) banner.hidden = true;
+    window.netupLoadAnalytics();
+  });
+  if (rejectBtn) rejectBtn.addEventListener('click', function() {
+    setConsent('denied');
+    if (banner) banner.hidden = true;
+  });
+
+  document.querySelectorAll('[data-cookie-settings]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (banner) banner.hidden = false;
+    });
+  });
+})();
+
 // Smooth scroll closes mobile nav
 document.querySelectorAll('#navLinks a').forEach(a => {
   a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
@@ -1559,16 +1663,20 @@ document.querySelectorAll('#navLinks a').forEach(a => {
 
 // =============================================================
 // GA4 event tracking — store clicks, video play, CTA clicks
+// Not: gtag onaydan önce tanımsız olabilir; dinleyiciler her zaman
+// bağlanır, gerçek çağrı yalnız gtag yüklüyse (onay verilmişse) yapılır.
 // =============================================================
 (function() {
-  if (typeof gtag !== 'function') return;
+  function ga(name, params) {
+    if (typeof gtag === 'function') gtag('event', name, params);
+  }
 
   // Store button tıklamaları (Google Play + App Store)
   document.querySelectorAll('a[href*="play.google.com"], a[href*="apps.apple.com"]').forEach(function(link) {
     link.addEventListener('click', function() {
       var store = link.href.indexOf('apple.com') > -1 ? 'app_store' : 'google_play';
       var location = link.closest('.hero') ? 'hero' : (link.closest('.final-cta') ? 'final_cta' : (link.closest('.header') ? 'header' : 'other'));
-      gtag('event', 'store_click', {
+      ga('store_click', {
         'event_category': 'cta',
         'event_label': store + '_' + location,
         'store': store,
@@ -1584,13 +1692,13 @@ document.querySelectorAll('#navLinks a').forEach(a => {
     video.addEventListener('play', function() {
       if (played) return;
       played = true;
-      gtag('event', 'video_play', {
+      ga('video_play', {
         'event_category': 'engagement',
         'event_label': 'reels_v3_showcase'
       });
     });
     video.addEventListener('ended', function() {
-      gtag('event', 'video_complete', {
+      ga('video_complete', {
         'event_category': 'engagement',
         'event_label': 'reels_v3_showcase'
       });
@@ -1600,7 +1708,7 @@ document.querySelectorAll('#navLinks a').forEach(a => {
   // Pro CTA tıklaması ("İndir ve ilk hafta ücretsiz dene")
   document.querySelectorAll('.pro-card a, .pro-card .btn').forEach(function(el) {
     el.addEventListener('click', function() {
-      gtag('event', 'pro_cta_click', {
+      ga('pro_cta_click', {
         'event_category': 'pricing',
         'event_label': 'pro_card_button'
       });
@@ -1615,7 +1723,7 @@ document.querySelectorAll('#navLinks a').forEach(a => {
     milestones.forEach(function(m) {
       if (!hit[m] && scrolled >= m) {
         hit[m] = true;
-        gtag('event', 'scroll_depth', {
+        ga('scroll_depth', {
           'event_category': 'engagement',
           'event_label': m + '_percent',
           'percent': m
@@ -1627,7 +1735,7 @@ document.querySelectorAll('#navLinks a').forEach(a => {
   // Outbound link tıklamaları (gizlilik, hesap silme, e-mail)
   document.querySelectorAll('a[href^="https://netup.website/netup-"], a[href^="mailto:"]').forEach(function(link) {
     link.addEventListener('click', function() {
-      gtag('event', 'outbound_click', {
+      ga('outbound_click', {
         'event_category': 'navigation',
         'event_label': link.href
       });
@@ -1638,12 +1746,12 @@ document.querySelectorAll('#navLinks a').forEach(a => {
 // =============================================================
 // Meta Pixel — mağaza tıklaması (StoreClick özel olayı)
 // GA4'ten bağımsız çalışır: Meta, sayfayı açanı değil mağazaya
-// tıklayanı optimize edebilsin diye.
+// tıklayanı optimize edebilsin diye. fbq onaydan önce tanımsız olabilir.
 // =============================================================
 (function() {
-  if (typeof fbq !== 'function') return;
   document.querySelectorAll('a[href*="play.google.com"], a[href*="apps.apple.com"]').forEach(function(link) {
     link.addEventListener('click', function() {
+      if (typeof fbq !== 'function') return;
       var store = link.href.indexOf('apple.com') > -1 ? 'app_store' : 'google_play';
       var location = link.closest('.hero') ? 'hero' : (link.closest('.final-cta') ? 'final_cta' : (link.closest('.header') ? 'header' : 'other'));
       fbq('trackCustom', 'StoreClick', { store: store, location: location });
